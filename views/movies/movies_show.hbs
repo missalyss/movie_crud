@@ -1,0 +1,13 @@
+
+<div class="row">
+  {{#each singleMovie}}
+  <div class="a-movie col-lg-12">
+  {{#with this}}
+    <h2>{{title}}</h2>
+    <p>{{director}}, {{year}}</p>
+    <p>{{my_rating}}</p>
+    <img src="{{poster_url}}" alt="oops! movie poster">
+    {{/with}}
+  </div>
+  {{/each}}
+</div>
