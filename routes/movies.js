@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex.js')
 
-
-////////////RENDERING PAGES///////////////
 router.get('/', function(req, res, next) {
   knex('movies')
   .then(function(allMovies) {
@@ -23,8 +21,7 @@ router.get('/:id/edit', function(req, res, next) {
     res.render('movies/edit', {thisMovie})
 
   })
-})//this may go under the .get /:id//
-
+})
 
 router.get('/:id', function (req, res, next) {
   var id = req.params.id
@@ -42,5 +39,25 @@ router.post('/', function (req, res, next) {
   })
 })
 
+router.delete('/:id', function (req, res, next) {
+  var id = req.params.id
+  knex('movies').del().where('id', id).then(function () {
+    res.redirect('/movies')
+  })
+})
+
+router.put('/:id', function (req, res, next) {
+  var id = req.params.id
+  var movie = {
+    title: req.body['title'],
+    director: req.body['director'],
+    year: req.body['year'],
+    my_rating: req.body['my_rating'],
+    poster_url: req.body['poster_url']
+  }
+  knex('movies').where({ id }).update(movie).then(function (updatedMovie) {
+    res.redirect(`/movies/${id}`)
+  })
+})
 
 module.exports = router;

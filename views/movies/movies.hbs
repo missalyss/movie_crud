@@ -10,7 +10,7 @@
       <p>Rating: {{my_rating}}</p>
       <a href="http://localhost:3000/movies/{{id}}/edit"><button class="btn"type="button">Edit</button></a>
 
-      <form action="http://localhost:3000/movies{{id}}?_method=DELETE" method="post">
+      <form action="http://localhost:3000/movies/{{id}}?_method=DELETE" method="post">
         <input class="btn" type="submit" name="delete" value="Delete">
       </form>
 
