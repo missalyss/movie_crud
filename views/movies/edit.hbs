@@ -1,4 +1,18 @@
-<form class="movie-edit" action="index.html" method="post">
+<form class="form-horizontal" action="http://localhost:3000/movies/{{id}}/edit?_method=PUT" method="post">
   <label for="title">Title:</label>
-  <input type="text" name="title" value="">
+  <input id="title" class="form-control" type="text" name="title" value="{{thisMovie.title}}">
+
+  <label for="director">Director:</label>
+  <input id="director" class="form-control" type="text" name="director" value="{{thisMovie.director}}">
+
+  <label for="year">Year:</label>
+  <input id="year" class="form-control" type="text" name="year" value="{{thisMovie.year}}">
+
+  <label for="my_rating">Rating:</label>
+  <input id="my_rating" class="form-control" type="text" name="my_rating" value="{{thisMovie.my_rating}}">
+
+  <label for="poster_url">Poster URL:</label>
+  <input id="poster_url" class="form-control" type="text" name="poster_url" value="{{thisMovie.poster_url}}">
+
+  <input class="btn"type="submit" name="edit" value="Edit">
 </form>

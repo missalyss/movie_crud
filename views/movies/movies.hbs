@@ -6,11 +6,15 @@
   <div class="a-movie col-lg-6">
     {{#with this}}
     <h3><a href="http://localhost:3000/movies/{{id}}">{{title}}</a></h3>
-    <p>{{director}}, {{year}}  </p>
-    <p>Rating: {{my_rating}}</p>
+    <p>{{director}}, {{year}}</p>
+      <p>Rating: {{my_rating}}</p>
+      <a href="http://localhost:3000/movies/{{id}}/edit"><button class="btn"type="button">Edit</button></a>
+
+      <form action="http://localhost:3000/movies{{id}}?_method=DELETE" method="post">
+        <input class="btn" type="submit" name="delete" value="Delete">
+      </form>
+
     <img src="{{poster_url}}" alt="oops! movie poster"></br>
-<a href="http://localhost:3000/movies/{{id}}/edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</span></a>
-<a href="http://localhost:3000/movies/"><span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</span></a>
     {{/with}}
   </br>
 </br>

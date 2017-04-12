@@ -17,9 +17,13 @@ router.get('/new', function(req, res, next) {
   res.render('movies/new_movie')
 })
 
-// router.get('/:id/edit', function(req, res, next) {
-//   res.render('movies/edit')
-// })//this may go under the .get /:id//
+router.get('/:id/edit', function(req, res, next) {
+  knex('movies').where('id', req.params.id).first().then(function (thisMovie) {
+    console.log(thisMovie);
+    res.render('movies/edit', {thisMovie})
+
+  })
+})//this may go under the .get /:id//
 
 
 router.get('/:id', function (req, res, next) {
