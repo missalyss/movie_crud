@@ -35,10 +35,10 @@ router.post('/', function (req, res, next) {
     title, director, year, my_rating, poster_url } = req.body
 
     if (!title || !director || !year || !my_rating || !poster_url) {
-      var error = "One of your fields is empty. They must all be filled before submit!"
+      var error = "One of your fields is empty. They must all be filled before you submit!"
       res.render('movies/new_movie', {error})
     } else if (isNaN(parseInt(year, 10))) {
-      var error = "Your year needs to be a number"
+      var error = "Your year needs to be a number."
       res.render('movies/new_movie', {error})
     } else if (!poster_url.match(/.jpg/gi)){
       var error = "Your image url needs to be a jpg. Sorry."
