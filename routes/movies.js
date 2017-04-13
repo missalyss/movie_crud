@@ -33,10 +33,22 @@ router.get('/:id', function (req, res, next) {
 router.post('/', function (req, res, next) {
   var movie = {
     title, director, year, my_rating, poster_url } = req.body
-  knex('movies').insert(movie, '*').then(function (newMovie) {
-    var id = newMovie[0].id
-    res.redirect(`/movies/${id}`)
-  })
+
+    if (!title || !director || !year || !my_rating || !poster_url) {
+      var error = "One of your fields is empty. They must all be filled before submit!"
+      res.render('movies/new_movie', {error})
+    } else if (isNaN(parseInt(year, 10))) {
+      var error = "Your year needs to be a number"
+      res.render('movies/new_movie', {error})
+    } else if (!poster_url.match(/.jpg/gi)){
+      var error = "Your image url needs to be a jpg. Sorry."
+      res.render('movies/new_movie', {error})
+    } else {
+    knex('movies').insert(movie, '*').then(function (newMovie) {
+      var id = newMovie[0].id
+      res.redirect(`/movies/${id}`)
+    })
+  }
 })
 
 router.delete('/:id', function (req, res, next) {
